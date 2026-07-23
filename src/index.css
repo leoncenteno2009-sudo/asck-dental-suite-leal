@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Estilos globales y reset */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  width: 100%;
+  background-color: #f8fafc;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark, html.dark body, html.dark #root {
+  background-color: #020617; /* Coincide con dark:bg-slate-950 */
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Clases de animación fluidas */
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in {
+  animation: slideInFromRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.2s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+}
+
+/* Transiciones personalizadas para interacción y fluidez */
+.interactive-hover-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.interactive-hover-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.1);
+}
+
+.dark .interactive-hover-card:hover {
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* Diseño premium de Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.45);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.3);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+/* Animaciones y estilos para Toasts */
+@keyframes toastIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-toast-in {
+  animation: toastIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Animación de entrada para cajón inferior (Asistente IA) */
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-bottom {
+  animation: slideInFromBottom 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Estilos para pestañas de archivador físico (clip-path trapezoidal) */
+.folder-tab-clip {
+  clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 100%, 0% 100%);
+}
+
+/* Ajustes de impresión profesionales (ocultar interfaz de navegación, cromo y habilitar páginas múltiples) */
+@media print {
+  html, body, #root, #root > div, #root > div > div {
+    height: auto !important;
+    overflow: visible !important;
+    background-color: white !important;
+    color: black !important;
+  }
+
+  #main-sidebar,
+  header,
+  aside,
+  button,
+  input,
+  select,
+  #btn-ai-assistant-header,
+  [role="alert"],
+  .toast,
+  .modal,
+  .no-print,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  #main-scene-body, main {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* MONOCHROME/GREYSCALE ACCENT COLOR SCHEME OVERRIDES */
+
+/* Background overrides */
+.bg-blue-50, .bg-blue-100, .bg-blue-50\/50, .bg-blue-950\/40, .bg-blue-950\/20, .bg-blue-950\/50, .bg-blue-100\/40, .bg-blue-900\/40, .bg-blue-50\/20, .bg-blue-600\/5, .bg-blue-400\/10 {
+  background-color: var(--color-secondary, #f1f5f9) !important;
+}
+.dark .bg-blue-50, .dark .bg-blue-100, .dark .bg-blue-50\/50, .dark .bg-blue-950\/40, .dark .bg-blue-950\/20, .dark .bg-blue-950\/50, .dark .bg-blue-100\/40, .dark .bg-blue-900\/40, .dark .bg-blue-50\/20, .dark .bg-blue-600\/5, .dark .bg-blue-400\/10 {
+  background-color: #1e293b !important; /* slate-800 */
+}
+
+.bg-blue-500, .bg-blue-600, .bg-blue-700, .bg-blue-800, .bg-blue-650 {
+  background-color: var(--color-primary, #0f172a) !important;
+  color: #ffffff !important;
+}
+.dark .bg-blue-500, .dark .bg-blue-600, .dark .bg-blue-700, .dark .bg-blue-800, .dark .bg-blue-650 {
+  background-color: var(--color-accent, #f8fafc) !important;
+  color: #0f172a !important;
+}
+
+.hover\:bg-blue-700:hover, .hover\:bg-blue-600:hover, .hover\:bg-blue-800:hover {
+  background-color: var(--color-primary, #1e293b) !important;
+  opacity: 0.9;
+}
+.dark .hover\:bg-blue-700:hover, .dark .hover\:bg-blue-600:hover, .dark .hover\:bg-blue-800:hover {
+  background-color: var(--color-accent, #e2e8f0) !important;
+  opacity: 0.9;
+}
+
+/* Text overrides */
+.text-blue-50, .text-blue-100, .text-blue-300, .text-blue-400, .text-blue-500, .text-blue-600, .text-blue-700, .text-blue-800, .text-blue-850, .text-blue-900, .text-[#00346f], .text-blue-450 {
+  color: var(--color-primary, #0f172a) !important;
+}
+.dark .text-blue-50, .dark .text-blue-100, .dark .text-blue-300, .dark .text-blue-400, .dark .text-blue-500, .dark .text-blue-600, .dark .text-blue-700, .dark .text-blue-800, .dark .text-blue-850, .dark .text-blue-900, .dark .text-[#00346f], .dark .text-blue-450 {
+  color: var(--color-accent, #f1f5f9) !important;
+}
+
+.hover\:text-blue-700:hover, .hover\:text-blue-600:hover, .hover\:text-blue-400:hover, .dark .hover\:text-blue-300:hover, .dark .hover\:text-blue-450:hover, .hover\:text-blue-650:hover {
+  color: var(--color-primary, #000000) !important;
+}
+.dark .hover\:text-blue-700:hover, .dark .hover\:text-blue-600:hover, .dark .hover\:text-blue-400:hover, .dark .hover\:text-blue-300:hover, .dark .hover\:text-blue-450:hover, .dark .hover\:text-blue-650:hover {
+  color: var(--color-accent, #ffffff) !important;
+}
+
+/* Border overrides */
+.border-blue-50, .border-blue-100, .border-blue-200, .border-blue-250, .border-blue-400, .border-blue-500, .border-blue-600, .border-blue-700, .border-blue-800, .border-blue-900 {
+  border-color: var(--color-primary, #cbd5e1) !important;
+}
+.dark .border-blue-50, .dark .border-blue-100, .dark .border-blue-200, .dark .border-blue-250, .dark .border-blue-400, .dark .border-blue-500, .dark .border-blue-600, .dark .border-blue-700, .dark .border-blue-800, .dark .border-blue-900 {
+  border-color: var(--color-accent, #334155) !important;
+}
+
+/* Focus and ring overrides */
+.focus\:border-blue-600:focus, .focus\:border-blue-500:focus, .focus\:border-blue-400:focus {
+  border-color: var(--color-primary, #0f172a) !important;
+}
+.dark .focus\:border-blue-600:focus, .dark .focus\:border-blue-500:focus, .dark .focus\:border-blue-400:focus {
+  border-color: var(--color-accent, #f1f5f9) !important;
+}
+
+.focus\:ring-blue-600:focus, .focus\:ring-blue-500:focus, .focus\:ring-blue-400:focus, .focus\:ring-1:focus {
+  --tw-ring-color: var(--color-primary, #0f172a) !important;
+}
+.dark .focus\:ring-blue-600:focus, .dark .focus\:ring-blue-500:focus, .dark .focus\:ring-blue-400:focus, .dark .focus\:ring-1:focus {
+  --tw-ring-color: var(--color-accent, #f1f5f9) !important;
+}
+
+.ring-blue-500, .ring-blue-400 {
+  --tw-ring-color: var(--color-primary, #0f172a) !important;
+}
+.dark .ring-blue-500, .dark .ring-blue-400 {
+  --tw-ring-color: var(--color-accent, #f1f5f9) !important;
+}
+
+/* Accent form overrides */
+.accent-blue-650 {
+  accent-color: var(--color-primary, #0f172a) !important;
+}
+.dark .accent-blue-650 {
+  accent-color: var(--color-accent, #f1f5f9) !important;
+}
+
+/* SVG paths (Odontograma filling and outlines) */
+.fill-blue-500\/20, .fill-blue-500\/10 {
+  fill: var(--color-accent, #475569) !important;
+  opacity: 0.15 !important;
+}
+.fill-blue-500, .fill-blue-600 {
+  fill: var(--color-primary, #475569) !important;
+}
+.stroke-blue-500, .stroke-blue-600, .stroke-blue-400 {
+  stroke: var(--color-primary, #475569) !important;
+}
+
+
